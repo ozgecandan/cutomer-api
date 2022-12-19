@@ -1,0 +1,20 @@
+﻿global using Microsoft.EntityFrameworkCore;
+
+namespace projectDemo.Data
+{
+    public class DataContext : DbContext
+    {
+        public DataContext(DbContextOptions<DataContext> options) : base(options) 
+        {
+        
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS02;Database=CustomerProject;Trusted_Connection=true;TrustServerCertificate=true;");
+        }
+
+        public DbSet<Customer> Customers { get; set; }
+    }
+}
